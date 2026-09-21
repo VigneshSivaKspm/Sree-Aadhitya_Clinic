@@ -1,0 +1,80 @@
+rules_version = '2';
+
+// Firebase Storage rules — role checks read the same users/{uid} profile used by Firestore.
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function profilePath() {
+      return /databases/(default)/documents/users/$(request.auth.uid);
+    }
+
+    function isActiveStaff() {
+      return request.auth != null
+        && firestore.exists(profilePath())
+        && firestore.get(profilePath()).data.active == true;
+    }
+
+    function role() {
+      return firestore.get(profilePath()).data.role;
+    }
+
+    function isSuper() {
+      return isActiveStaff() && role() == 'super_admin';
+    }
+
+    function canPractice(practice) {
+      return isSuper()
+        || (practice == 'ayurveda' && isActiveStaff() && role() == 'ayurveda_admin')
+        || (practice == 'dental' && isActiveStaff() && role() == 'dental_admin');
+    }
+
+    function canStore() {
+      return isSuper() || (isActiveStaff() && role() == 'ayurveda_admin');
+    }
+
+    // 'main' (shared site imagery) is super-admin only
+    function canContent(scope) {
+      return scope == 'main' ? isSuper() : canPractice(scope);
+    }
+
+    // Images only, max 5 MB
+    function validImage() {
+      return request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp|gif|avif)');
+    }
+
+    // doctors/{practice}/{file}
+    match /doctors/{practice}/{file} {
+      allow read: if true;
+      allow create, update: if canPractice(practice) && validImage();
+      allow delete: if canPractice(practice);
+    }
+
+    // services/{practice}/{file}
+    match /services/{practice}/{file} {
+      allow read: if true;
+      allow create, update: if canPractice(practice) && validImage();
+      allow delete: if canPractice(practice);
+    }
+
+    // products/{file}  and  categories/{file}
+    match /products/{file} {
+      allow read: if true;
+      allow create, update: if canStore() && validImage();
+      allow delete: if canStore();
+    }
+
+    match /categories/{file} {
+      allow read: if true;
+      allow create, update: if canStore() && validImage();
+      allow delete: if canStore();
+    }
+
+    // site/{scope}/{file}  scope: main | ayurveda | dental
+    match /site/{scope}/{file} {
+      allow read: if true;
+      allow create, update: if canContent(scope) && validImage();
+      allow delete: if canContent(scope);
+    }
+  }
+}

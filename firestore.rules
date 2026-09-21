@@ -1,0 +1,341 @@
+rules_version = '2';
+
+// =============================================================================
+// Shree Aadhitya Hospitals — Firestore security rules
+//
+// Authorization is role-based and enforced HERE, not just in the React apps.
+// Staff roles live in  users/{uid}.role  and are only writable by a super_admin.
+//
+//   super_admin     : everything
+//   ayurveda_admin  : ayurveda practice data + the Ayurvedic store
+//   dental_admin    : dental practice data only (no store, no orders)
+//
+// Public visitors can:
+//   - read ACTIVE catalogue/content documents
+//   - create appointments, orders and enquiries (strictly validated, create-only)
+//   - read a single order-tracking document if they know its unguessable ID
+// Public visitors can NEVER list or read appointments, orders, enquiries, users.
+// =============================================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------------------------------------------------------------- helpers
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function profilePath() {
+      return /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+
+    function isActiveStaff() {
+      return signedIn()
+        && exists(profilePath())
+        && get(profilePath()).data.active == true;
+    }
+
+    function role() {
+      return get(profilePath()).data.role;
+    }
+
+    function isSuper() {
+      return isActiveStaff() && role() == 'super_admin';
+    }
+
+    function isAyurAdmin() {
+      return isActiveStaff() && role() == 'ayurveda_admin';
+    }
+
+    function isDentalAdmin() {
+      return isActiveStaff() && role() == 'dental_admin';
+    }
+
+    // Access to one practice's operational data ('ayurveda' | 'dental')
+    function canPractice(practice) {
+      return isSuper()
+        || (practice == 'ayurveda' && isAyurAdmin())
+        || (practice == 'dental' && isDentalAdmin());
+    }
+
+    // Store (products, categories, orders) belongs to the Ayurvedic practice
+    function canStore() {
+      return isSuper() || isAyurAdmin();
+    }
+
+    // Content scope: 'main' (shared site) is super-admin only
+    function canContent(scope) {
+      return scope == 'main' ? isSuper() : canPractice(scope);
+    }
+
+    function isPractice(value) {
+      return value in ['ayurveda', 'dental'];
+    }
+
+    function str(value, minLen, maxLen) {
+      return value is string && value.size() >= minLen && value.size() <= maxLen;
+    }
+
+    function unchanged(field) {
+      return request.resource.data[field] == resource.data[field];
+    }
+
+    // ------------------------------------------------------------------ users
+    // First-run bootstrap: while settings/adminBootstrap does not exist, a signed-in user may
+    // create THEIR OWN super_admin profile — but only in the same atomic write that creates
+    // the adminBootstrap marker (which closes the window for everyone else). A second
+    // concurrent attempt fails because the marker can only be created once.
+    function isBootstrapProfile(uid, d) {
+      return signedIn() && request.auth.uid == uid
+        && !exists(/databases/$(database)/documents/settings/adminBootstrap)
+        && existsAfter(/databases/$(database)/documents/settings/adminBootstrap)
+        && d.keys().hasOnly(['name', 'email', 'role', 'active', 'createdAt', 'updatedAt'])
+        && str(d.name, 2, 100)
+        && d.email == request.auth.token.email
+        && d.role == 'super_admin'
+        && d.active == true
+        && d.createdAt == request.time
+        && d.updatedAt == request.time;
+    }
+
+    match /users/{uid} {
+      allow get: if signedIn() && (request.auth.uid == uid || isSuper());
+      allow list: if isSuper();
+      // Only a super admin may modify/delete profiles or roles.
+      allow create: if isSuper() || isBootstrapProfile(uid, request.resource.data);
+      allow update, delete: if isSuper();
+    }
+
+    // Marker that the first super admin exists. Create-only, and only alongside a real
+    // active super_admin profile for the same user (so it can't be planted by a stranger).
+    match /settings/adminBootstrap {
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['uid', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && existsAfter(/databases/$(database)/documents/users/$(request.auth.uid))
+        && getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'super_admin'
+        && getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.active == true;
+    }
+
+    // ---------------------------------------------------------- access requests
+    // A newly signed-up user can file ONE request for their own uid. It grants nothing:
+    // only a super_admin can turn it into a users/{uid} profile with a role.
+    match /accessRequests/{uid} {
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name', 'email', 'status', 'createdAt'])
+        && str(request.resource.data.name, 2, 100)
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time;
+      allow get: if signedIn() && request.auth.uid == uid;
+      allow list, update, delete: if isSuper();
+    }
+
+    // ---------------------------------------------------------------- doctors
+    match /doctors/{id} {
+      allow read: if resource.data.active == true || canPractice(resource.data.practiceType);
+      allow create: if isPractice(request.resource.data.practiceType)
+        && canPractice(request.resource.data.practiceType);
+      allow update: if canPractice(resource.data.practiceType)
+        && isPractice(request.resource.data.practiceType)
+        && canPractice(request.resource.data.practiceType);
+      allow delete: if canPractice(resource.data.practiceType);
+    }
+
+    // --------------------------------------------------- services / treatments
+    match /services/{id} {
+      allow read: if resource.data.active == true || canPractice(resource.data.practiceType);
+      allow create: if isPractice(request.resource.data.practiceType)
+        && canPractice(request.resource.data.practiceType);
+      allow update: if canPractice(resource.data.practiceType)
+        && isPractice(request.resource.data.practiceType)
+        && canPractice(request.resource.data.practiceType);
+      allow delete: if canPractice(resource.data.practiceType);
+    }
+
+    // ----------------------------------------------------------- appointments
+    function validAppointment(d) {
+      return d.keys().hasOnly([
+          'practiceType', 'patientName', 'phone', 'email', 'doctorId', 'doctorName',
+          'serviceId', 'serviceName', 'preferredDate', 'preferredTime', 'notes',
+          'consent', 'status', 'createdAt', 'updatedAt'
+        ])
+        && d.keys().hasAll([
+          'practiceType', 'patientName', 'phone', 'preferredDate', 'preferredTime',
+          'consent', 'status', 'createdAt', 'updatedAt'
+        ])
+        && isPractice(d.practiceType)
+        && str(d.patientName, 2, 100)
+        && d.phone is string && d.phone.matches('^[6-9][0-9]{9}$')
+        && (!('email' in d) || (d.email is string && d.email.size() <= 120))
+        && (!('doctorId' in d) || str(d.doctorId, 0, 80))
+        && (!('doctorName' in d) || str(d.doctorName, 0, 120))
+        && (!('serviceId' in d) || str(d.serviceId, 0, 80))
+        && (!('serviceName' in d) || str(d.serviceName, 0, 160))
+        && (!('notes' in d) || str(d.notes, 0, 1000))
+        && d.preferredDate is string && d.preferredDate.matches('^20[0-9]{2}-[01][0-9]-[0-3][0-9]$')
+        && d.preferredTime is string && d.preferredTime.matches('^[0-2][0-9]:[0-5][0-9]$')
+        && d.consent == true
+        && d.status == 'pending'
+        && d.createdAt == request.time
+        && d.updatedAt == request.time;
+    }
+
+    match /appointments/{id} {
+      // Public: create only. No public read/list/update/delete.
+      allow create: if validAppointment(request.resource.data);
+      allow read: if canPractice(resource.data.practiceType);
+      allow update: if canPractice(resource.data.practiceType)
+        && unchanged('practiceType');
+      allow delete: if isSuper();
+
+      // Status-change audit trail (written by admins only)
+      match /history/{historyId} {
+        allow read, create: if canPractice(
+          get(/databases/$(database)/documents/appointments/$(id)).data.practiceType);
+        allow update, delete: if false;
+      }
+    }
+
+    // ------------------------------------------------ store: categories/products
+    match /productCategories/{id} {
+      allow read: if resource.data.active == true || canStore();
+      allow create, update, delete: if canStore();
+    }
+
+    match /products/{id} {
+      allow read: if resource.data.active == true || canStore();
+      allow create, update, delete: if canStore();
+
+      // Append-only stock movement log (manual adjustments, order deductions/restores)
+      match /stockMovements/{movementId} {
+        allow read, create: if canStore();
+        allow update, delete: if false;
+      }
+    }
+
+    // ----------------------------------------------------------------- orders
+    // NOTE: rules cannot iterate over the items array, so line totals/prices are
+    // re-checked client-side against the live catalogue and MUST be reviewed by
+    // staff before an order is confirmed. See README "Trusted order processing".
+    function validOrder(d, id) {
+      return d.keys().hasOnly([
+          'orderNumber', 'customer', 'deliveryAddress', 'items', 'itemCount',
+          'subtotal', 'shippingFee', 'total', 'paymentMethod', 'paymentStatus',
+          'orderStatus', 'stockDeducted', 'createdAt', 'updatedAt'
+        ])
+        && d.keys().hasAll([
+          'orderNumber', 'customer', 'deliveryAddress', 'items', 'itemCount',
+          'subtotal', 'shippingFee', 'total', 'paymentMethod', 'paymentStatus',
+          'orderStatus', 'stockDeducted', 'createdAt', 'updatedAt'
+        ])
+        && id.matches('^AAH-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$')
+        && d.orderNumber == id
+        && d.customer.keys().hasOnly(['name', 'phone', 'email'])
+        && str(d.customer.name, 2, 100)
+        && d.customer.phone is string && d.customer.phone.matches('^[6-9][0-9]{9}$')
+        && str(d.customer.email, 0, 120)
+        && d.deliveryAddress.keys().hasOnly([
+          'addressLine', 'area', 'city', 'district', 'state', 'postalCode', 'landmark'
+        ])
+        && str(d.deliveryAddress.addressLine, 3, 200)
+        && str(d.deliveryAddress.area, 2, 100)
+        && str(d.deliveryAddress.city, 2, 100)
+        && str(d.deliveryAddress.district, 2, 100)
+        && str(d.deliveryAddress.state, 2, 100)
+        && d.deliveryAddress.postalCode is string && d.deliveryAddress.postalCode.matches('^[1-9][0-9]{5}$')
+        && str(d.deliveryAddress.landmark, 0, 150)
+        && d.items is list && d.items.size() >= 1 && d.items.size() <= 50
+        && d.itemCount is int && d.itemCount >= 1 && d.itemCount <= 500
+        && d.subtotal is number && d.subtotal >= 0
+        && d.shippingFee is number && d.shippingFee >= 0
+        && d.total is number && d.total == d.subtotal + d.shippingFee
+        && d.paymentMethod in ['cod', 'manual_transfer']
+        && d.paymentStatus == 'pending'
+        && d.orderStatus == 'pending'
+        && d.stockDeducted == false
+        && d.createdAt == request.time
+        && d.updatedAt == request.time;
+    }
+
+    match /orders/{id} {
+      // Public: create only. Orders can never be listed or read by the public.
+      allow create: if validOrder(request.resource.data, id);
+      allow read, update: if canStore();
+      allow delete: if isSuper();
+    }
+
+    // Minimal public tracking record (status only — no address / phone).
+    // Readable by GET only, and only by someone who knows the unguessable ID.
+    match /orderTracking/{id} {
+      allow get: if true;
+      allow list: if canStore();
+      allow create: if id.matches('^AAH-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$')
+        && existsAfter(/databases/$(database)/documents/orders/$(id))
+        && request.resource.data.keys().hasOnly([
+          'orderNumber', 'orderStatus', 'paymentStatus', 'itemCount', 'total',
+          'items', 'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.orderNumber == id
+        && request.resource.data.orderStatus == 'pending'
+        && request.resource.data.paymentStatus == 'pending'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update: if canStore();
+      allow delete: if isSuper();
+    }
+
+    // ------------------------------------------------------ website content
+    // scope: 'main' | 'ayurveda' | 'dental'
+    match /testimonials/{id} {
+      allow read: if resource.data.active == true || canContent(resource.data.practiceType);
+      allow create: if canContent(request.resource.data.practiceType);
+      allow update: if canContent(resource.data.practiceType)
+        && canContent(request.resource.data.practiceType);
+      allow delete: if canContent(resource.data.practiceType);
+    }
+
+    match /faqs/{id} {
+      allow read: if resource.data.active == true || canContent(resource.data.practiceType);
+      allow create: if canContent(request.resource.data.practiceType);
+      allow update: if canContent(resource.data.practiceType)
+        && canContent(request.resource.data.practiceType);
+      allow delete: if canContent(resource.data.practiceType);
+    }
+
+    // Structured page content: siteContent/main | siteContent/ayurveda | siteContent/dental
+    match /siteContent/{page} {
+      allow read: if true;
+      allow write: if canContent(page);
+    }
+
+    // Public site settings (contact details, shipping, thresholds). Never store secrets here.
+    match /settings/{id} {
+      allow read: if id != 'adminBootstrap' || isSuper();
+      allow write: if isSuper();
+    }
+
+    // --------------------------------------------------------------- enquiries
+    function validEnquiry(d) {
+      return d.keys().hasOnly([
+          'practiceType', 'name', 'phone', 'email', 'message', 'status', 'createdAt', 'updatedAt'
+        ])
+        && d.keys().hasAll(['practiceType', 'name', 'phone', 'message', 'status', 'createdAt', 'updatedAt'])
+        && d.practiceType in ['general', 'ayurveda', 'dental']
+        && str(d.name, 2, 100)
+        && d.phone is string && d.phone.matches('^[6-9][0-9]{9}$')
+        && (!('email' in d) || str(d.email, 0, 120))
+        && str(d.message, 5, 1500)
+        && d.status == 'new'
+        && d.createdAt == request.time
+        && d.updatedAt == request.time;
+    }
+
+    match /enquiries/{id} {
+      allow create: if validEnquiry(request.resource.data);
+      allow read, update: if resource.data.practiceType == 'general'
+        ? isSuper() : canPractice(resource.data.practiceType);
+      allow delete: if isSuper();
+    }
+  }
+}

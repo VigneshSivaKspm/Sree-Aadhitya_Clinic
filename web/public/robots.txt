@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /order-success
+Disallow: /orders
+
+# Replace with the production domain once known:
+# Sitemap: https://www.example.com/sitemap.xml
