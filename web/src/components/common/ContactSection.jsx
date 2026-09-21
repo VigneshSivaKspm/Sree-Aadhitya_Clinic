@@ -1,5 +1,5 @@
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
-import { PRACTICES } from '../../config/site';
+import { BRAND, PRACTICES } from '../../config/site';
 import { toneFor } from '../../config/theme';
 import { useSite } from '../../contexts/SiteContext';
 import { mapsSearchHref, telHref } from '../../utils/contact';
@@ -26,7 +26,7 @@ export default function ContactSection({ practice, id = 'contact', muted = false
   const { contactFor } = useSite();
   const c = contactFor(practice);
   const tone = practice || 'main';
-  const title = practice ? PRACTICES[practice].name : 'Shree Aadhitya Hospitals';
+  const title = practice ? PRACTICES[practice].name : BRAND.fullName;
 
   return (
     <Section id={id} muted={muted} tone={practice}>

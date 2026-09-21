@@ -9,6 +9,14 @@ export const DEMO_ENABLED =
   import.meta.env.VITE_ENABLE_DEMO_DATA === 'true' ||
   (import.meta.env.DEV && import.meta.env.VITE_ENABLE_DEMO_DATA !== 'false');
 
+// Central brand identity — used for the site name, page titles, header, footer and SEO.
+export const BRAND = {
+  fullName: 'SREE AADHITYAA INTEGRATED SIDDHA AND DENTAL HEALTHCARE',
+  short: 'SREE AADHITYAA',
+  descriptor: 'Integrated Siddha and Dental Healthcare',
+  shortDescriptor: 'Siddha & Dental Healthcare',
+};
+
 export const PRACTICES = {
   ayurveda: {
     key: 'ayurveda',
@@ -30,7 +38,7 @@ export const PRACTICES = {
 
 export const DEFAULT_SETTINGS = {
   brand: {
-    groupName: 'Shree Aadhitya Hospitals',
+    groupName: BRAND.fullName,
     developer: 'Legendary One Technologies',
   },
   contact: {
@@ -61,10 +69,10 @@ export const DEFAULT_SETTINGS = {
 export const DEFAULT_CONTENT = {
   main: {
     hero: {
-      eyebrow: 'Ayurvedic & Dental Care',
-      title: 'Two practices. One commitment to careful, personal care.',
+      eyebrow: 'Siddha & Dental Healthcare',
+      title: BRAND.fullName,
       subtitle:
-        'Shree Aadhitya brings together an Ayurvedic hospital and a dental hospital, with online appointments and a store for Ayurvedic products.',
+        'Integrated Siddha and dental care under one name, with online appointments and an online store for herbal and Ayurvedic products.',
       image: '',
     },
     whyChoose: [
@@ -78,9 +86,9 @@ export const DEFAULT_CONTENT = {
       text: 'Choose a practice, doctor and preferred time. Our team will confirm your request.',
     },
     about: {
-      title: 'About Shree Aadhitya',
+      title: `About ${BRAND.short}`,
       body:
-        'Shree Aadhitya is a healthcare group with an Ayurvedic hospital and a dental hospital under one name. This page will be updated with the hospital’s history, values and team once the details are supplied.',
+        `${BRAND.fullName} offers integrated Siddha and dental care under one name. This page will be updated with the hospital’s history, values and team once the details are supplied.`,
     },
   },
   ayurveda: {

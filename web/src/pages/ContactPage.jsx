@@ -4,6 +4,7 @@ import ContactSection from '../components/common/ContactSection';
 import Button from '../components/ui/Button';
 import { SelectField, TextAreaField, TextField } from '../components/ui/FormField';
 import { PageHero, Section, SectionHeading } from '../components/ui/Section';
+import { BRAND } from '../config/site';
 import Seo from '../components/ui/Seo';
 import { createEnquiry } from '../services/enquiryService';
 import { getErrorMessage, logError } from '../utils/errors';
@@ -87,7 +88,7 @@ function EnquiryForm() {
 export default function ContactPage() {
   return (
     <>
-      <Seo title="Contact us" description="Contact Shree Aadhitya Ayurvedic Hospital and Shree Aadhitya Dental Hospital." path="/contact" />
+      <Seo title="Contact us" description={`Contact ${BRAND.fullName}.`} path="/contact" />
       <PageHero eyebrow="Contact" title="We’d love to hear from you" description="Send us an enquiry, or call or message us directly. For appointments, please use the booking form." />
       <Section>
         <div className="mx-auto max-w-2xl">

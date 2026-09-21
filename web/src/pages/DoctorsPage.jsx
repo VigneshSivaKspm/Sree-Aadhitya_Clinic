@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { AsyncBlock } from '../components/common/Sections';
 import { DoctorCard } from '../components/practice/Cards';
 import { PageHero } from '../components/ui/Section';
+import { BRAND } from '../config/site';
 import Seo from '../components/ui/Seo';
 import { DemoNotice, EmptyState } from '../components/ui/States';
 import { toneFor } from '../config/theme';
@@ -20,7 +21,7 @@ export default function DoctorsPage() {
 
   return (
     <>
-      <Seo title="Our doctors" description="Meet the doctors at Shree Aadhitya Ayurvedic Hospital and Shree Aadhitya Dental Hospital." path="/doctors" />
+      <Seo title="Our doctors" description={`Meet the doctors at ${BRAND.fullName}.`} path="/doctors" />
       <PageHero eyebrow="Our team" title="Our doctors" description="Qualified practitioners across our Ayurvedic and dental hospitals." />
       <div className="container-page py-12">
         <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter doctors by practice">

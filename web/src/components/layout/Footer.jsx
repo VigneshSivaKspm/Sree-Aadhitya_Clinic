@@ -27,7 +27,7 @@ export default function Footer() {
         <div className="lg:col-span-2">
           <Logo inverted />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
-            Ayurvedic and dental care under one name, with online appointments and an Ayurvedic store.
+            Integrated Siddha and dental healthcare, with online appointments and an online store.
           </p>
           <ul className="mt-6 space-y-2.5 text-sm text-white/80">
             <li className="flex gap-3"><MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" />{c.address}</li>

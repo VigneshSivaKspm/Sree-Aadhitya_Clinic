@@ -1,6 +1,7 @@
 import { HomeHero, PracticeSelection, ServicesPreview, WhyChoose } from '../components/home/HomeSections';
 import { AppointmentBand, DoctorsSection, StorePreview, TestimonialsSection } from '../components/common/Sections';
 import ContactSection from '../components/common/ContactSection';
+import { BRAND } from '../config/site';
 import Seo from '../components/ui/Seo';
 import { useSite } from '../contexts/SiteContext';
 
@@ -10,7 +11,7 @@ export default function HomePage() {
   return (
     <>
       <Seo
-        description="Shree Aadhitya Ayurvedic Hospital and Shree Aadhitya Dental Hospital — book appointments online, explore treatments and shop Ayurvedic products."
+        description={`${BRAND.fullName} — book appointments online, explore Siddha and dental treatments and shop Ayurvedic products.`}
         path="/"
       />
       <HomeHero />

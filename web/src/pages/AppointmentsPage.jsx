@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import AppointmentForm from '../components/appointment/AppointmentForm';
 import { PageHero } from '../components/ui/Section';
+import { BRAND } from '../config/site';
 import Seo from '../components/ui/Seo';
 
 export default function AppointmentsPage() {
@@ -11,7 +12,7 @@ export default function AppointmentsPage() {
 
   return (
     <>
-      <Seo title="Book an appointment" description="Request an appointment at Shree Aadhitya Ayurvedic Hospital or Shree Aadhitya Dental Hospital." path="/appointments" />
+      <Seo title="Book an appointment" description={`Request an appointment at ${BRAND.fullName}.`} path="/appointments" />
       <PageHero eyebrow="Appointments" title="Book an appointment" description="Choose a practice, treatment and doctor, and tell us your preferred date and time. Our team will contact you to confirm." />
       <div className="container-page py-12">
         <div className="mx-auto max-w-3xl">

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, Check, HeartHandshake, Leaf, ShieldCheck, Smile, Stethoscope, UserRound } from 'lucide-react';
-import { PRACTICES } from '../../config/site';
+import { BRAND, PRACTICES } from '../../config/site';
 import { toneFor } from '../../config/theme';
 import { useSite } from '../../contexts/SiteContext';
 import { useServices } from '../../hooks/useCatalog';
@@ -20,7 +20,7 @@ export function HomeHero() {
       <div className="container-page grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
         <div>
           <p className="mb-4 text-xs font-semibold tracking-[0.16em] text-gold-600 uppercase">{hero.eyebrow}</p>
-          <h1 className="text-4xl leading-[1.1] font-semibold text-balance sm:text-5xl lg:text-6xl">{hero.title}</h1>
+          <h1 className="text-3xl leading-[1.12] font-semibold text-balance break-words sm:text-4xl lg:text-[2.75rem]">{hero.title}</h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-600">{hero.subtitle}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button to="/ayurveda" tone="ayurveda" size="lg"><Leaf className="size-5" aria-hidden="true" /> Explore Ayurveda</Button>
@@ -126,7 +126,7 @@ export function WhyChoose() {
   const { content } = useSite();
   return (
     <Section>
-      <SectionHeading align="center" eyebrow="Why Shree Aadhitya" title="Care built around you" />
+      <SectionHeading align="center" eyebrow={`Why ${BRAND.short}`} title="Care built around you" />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {content.main.whyChoose.map((item) => {
           const Icon = ICONS[item.icon] || ShieldCheck;

@@ -1,5 +1,5 @@
 import { MessageCircle, Phone } from 'lucide-react';
-import { PRACTICES } from '../../config/site';
+import { BRAND, PRACTICES } from '../../config/site';
 import { useSite } from '../../contexts/SiteContext';
 import { telHref, whatsappHref } from '../../utils/contact';
 import Button from '../ui/Button';
@@ -22,7 +22,7 @@ export function CallButton({ practice, tone, variant = 'outline', size = 'md', l
 export function WhatsAppButton({ practice, tone, variant = 'outline', size = 'md', label, message, className = '' }) {
   const { contactFor } = useSite();
   const contact = contactFor(practice);
-  const name = PRACTICES[practice]?.name || 'Shree Aadhitya Hospitals';
+  const name = PRACTICES[practice]?.name || BRAND.fullName;
   const href = whatsappHref(contact.whatsapp, message || `Hello ${name}, I would like to make an enquiry.`);
   if (!href) return null;
   return (

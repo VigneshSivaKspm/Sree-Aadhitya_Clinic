@@ -4,6 +4,7 @@ import { DoctorsSection } from '../components/common/Sections';
 import { WhyChoose } from '../components/home/HomeSections';
 import Button from '../components/ui/Button';
 import { PageHero, Section } from '../components/ui/Section';
+import { BRAND } from '../config/site';
 import Seo from '../components/ui/Seo';
 import { useSite } from '../contexts/SiteContext';
 
@@ -12,7 +13,7 @@ export default function AboutPage() {
   const about = content.main.about;
   return (
     <>
-      <Seo title="About us" description="About Shree Aadhitya Ayurvedic Hospital and Shree Aadhitya Dental Hospital." path="/about" />
+      <Seo title="About us" description={`About ${BRAND.fullName}.`} path="/about" />
       <PageHero eyebrow="About" title={about.title} />
       <Section>
         <div className="mx-auto max-w-3xl">
