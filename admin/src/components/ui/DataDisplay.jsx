@@ -31,7 +31,7 @@ export function Card({ title, description, actions, children, className = '', pa
   );
 }
 
-const STAT_TONES = { neutral: 'bg-ink-100 text-ink-700', green: 'bg-ayur-100 text-ayur-700', blue: 'bg-dental-100 text-dental-700', amber: 'bg-gold-100 text-gold-700', red: 'bg-danger-100 text-danger-700' };
+const STAT_TONES = { neutral: 'bg-ink-100 text-ink-700', green: 'bg-ayur-100 text-ayur-700', blue: 'bg-info-100 text-info-700', amber: 'bg-gold-100 text-gold-700', red: 'bg-danger-100 text-danger-700' };
 
 export function StatCard({ label, value, icon: Icon, tone = 'neutral', to, loading, hint }) {
   const body = (

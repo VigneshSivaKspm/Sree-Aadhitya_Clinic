@@ -3,7 +3,8 @@ import { titleCase } from '../../utils/format';
 const TONES = {
   neutral: 'bg-ink-100 text-ink-700',
   green: 'bg-ayur-100 text-ayur-800',
-  blue: 'bg-dental-100 text-dental-800',
+  blue: 'bg-info-100 text-info-800',
+  brand: 'bg-dental-100 text-dental-800',
   amber: 'bg-gold-100 text-gold-700',
   red: 'bg-danger-100 text-danger-700',
 };
@@ -29,7 +30,7 @@ export function StatusBadge({ status }) {
 
 export function PracticeBadge({ practice }) {
   if (!practice) return null;
-  const map = { ayurveda: ['green', 'Ayurveda'], dental: ['blue', 'Dental'], main: ['neutral', 'Main site'], general: ['neutral', 'General'] };
+  const map = { ayurveda: ['green', 'Ayurveda'], dental: ['brand', 'Dental'], main: ['neutral', 'Main site'], general: ['neutral', 'General'] };
   const [tone, label] = map[practice] || ['neutral', titleCase(practice)];
   return <Badge tone={tone}>{label}</Badge>;
 }

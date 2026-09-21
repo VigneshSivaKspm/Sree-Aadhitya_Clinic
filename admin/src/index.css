@@ -23,13 +23,20 @@
   --color-ayur-700: #3b5729;
   --color-ayur-800: #2f4523;
 
-  --color-dental-50: #eef8fb;
-  --color-dental-100: #d6eef4;
-  --color-dental-200: #b0dfea;
-  --color-dental-500: #2793ad;
-  --color-dental-600: #1c7891;
-  --color-dental-700: #1a6076;
-  --color-dental-800: #1a4e60;
+  --color-dental-50: #fef3f3;
+  --color-dental-100: #fde3e3;
+  --color-dental-200: #fbcacb;
+  --color-dental-500: #f17577;
+  --color-dental-600: #c8434a;
+  --color-dental-700: #a2343a;
+  --color-dental-800: #7e282d;
+
+  /* Functional info blue — used for status badges (confirmed / shipped), NOT a brand colour */
+  --color-info-100: #dbe7f3;
+  --color-info-500: #4a7fb0;
+  --color-info-600: #3a6a9a;
+  --color-info-700: #2f5a86;
+  --color-info-800: #244566;
 
   --color-gold-100: #f8ecd0;
   --color-gold-500: #c98a1b;

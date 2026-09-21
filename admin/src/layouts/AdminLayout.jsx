@@ -13,7 +13,7 @@ function Brand() {
         <span className="flex w-1/2 items-center justify-center bg-dental-600 text-white"><Smile className="size-4 -translate-x-0.5" /></span>
       </span>
       <div className="leading-tight">
-        <p className="text-sm font-semibold text-white">Shree Aadhitya</p>
+        <p className="text-sm font-semibold text-white">SREE AADHITYAA</p>
         <p className="text-[11px] tracking-wider text-white/60 uppercase">Admin</p>
       </div>
     </div>

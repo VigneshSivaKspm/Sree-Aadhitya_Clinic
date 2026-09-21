@@ -141,7 +141,7 @@ export default function UsersPage() {
 
   const columns = [
     { key: 'name', header: 'User', render: (u) => <div><p className="font-medium text-ink-900">{u.name || '—'}{u.id === user.uid && <span className="ml-2 text-xs font-normal text-ink-500">(you)</span>}</p><p className="text-xs text-ink-500">{u.email}</p></div> },
-    { key: 'role', header: 'Role', render: (u) => <Badge tone={u.role === ROLES.SUPER ? 'amber' : u.role === ROLES.DENTAL ? 'blue' : 'green'}>{ROLE_LABELS[u.role] || u.role}</Badge> },
+    { key: 'role', header: 'Role', render: (u) => <Badge tone={u.role === ROLES.SUPER ? 'amber' : u.role === ROLES.DENTAL ? 'brand' : 'green'}>{ROLE_LABELS[u.role] || u.role}</Badge> },
     { key: 'status', header: 'Status', render: (u) => <Badge tone={u.active ? 'green' : 'neutral'}>{u.active ? 'Active' : 'Inactive'}</Badge> },
     { key: 'actions', header: <span className="sr-only">Actions</span>, className: 'text-right whitespace-nowrap', render: (u) => (
       <>

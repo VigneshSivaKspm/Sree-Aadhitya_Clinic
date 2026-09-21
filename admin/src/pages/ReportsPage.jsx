@@ -16,7 +16,7 @@ const RANGES = [
   { value: 'year', label: 'This year' },
 ];
 
-const STATUS_COLOR = { pending: 'bg-gold-500', confirmed: 'bg-dental-500', completed: 'bg-ayur-500', cancelled: 'bg-danger-600', rescheduled: 'bg-ink-400', processing: 'bg-dental-500', shipped: 'bg-dental-600', delivered: 'bg-ayur-500' };
+const STATUS_COLOR = { pending: 'bg-gold-500', confirmed: 'bg-info-500', completed: 'bg-ayur-500', cancelled: 'bg-danger-600', rescheduled: 'bg-ink-400', processing: 'bg-info-500', shipped: 'bg-info-600', delivered: 'bg-ayur-500' };
 
 /** Horizontal bar with the number always printed beside it (colour is never the only cue). */
 function BarRow({ label, value, max, color }) {

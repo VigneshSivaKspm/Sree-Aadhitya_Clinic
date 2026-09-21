@@ -74,7 +74,7 @@ export const CONTENT_SCHEMA = {
 
 export const CONTENT_DEFAULTS = {
   main: {
-    hero: { eyebrow: 'Ayurvedic & Dental Care', title: 'Two practices. One commitment to careful, personal care.', subtitle: 'Shree Aadhitya brings together an Ayurvedic hospital and a dental hospital, with online appointments and a store for Ayurvedic products.', image: '' },
+    hero: { eyebrow: 'Siddha & Dental Healthcare', title: 'SREE AADHITYAA INTEGRATED SIDDHA AND DENTAL HEALTHCARE', subtitle: 'Integrated Siddha and dental care under one name, with online appointments and an online store for herbal and Ayurvedic products.', image: '' },
     whyChoose: [
       { icon: 'stethoscope', title: 'Experienced care', text: 'Consultations led by qualified practitioners in each discipline.' },
       { icon: 'heart', title: 'Patient-focused', text: 'Time to listen, explain options and plan care around you.' },
@@ -82,7 +82,7 @@ export const CONTENT_DEFAULTS = {
       { icon: 'user', title: 'Personalised consultation', text: 'Recommendations tailored to your needs and history.' },
     ],
     appointmentCta: { title: 'Book your appointment online', text: 'Choose a practice, doctor and preferred time. Our team will confirm your request.' },
-    about: { title: 'About Shree Aadhitya', body: 'Shree Aadhitya is a healthcare group with an Ayurvedic hospital and a dental hospital under one name. This page will be updated with the hospital’s history, values and team once the details are supplied.' },
+    about: { title: 'About SREE AADHITYAA', body: 'SREE AADHITYAA INTEGRATED SIDDHA AND DENTAL HEALTHCARE offers integrated Siddha and dental care under one name. This page will be updated with the hospital’s history, values and team once the details are supplied.' },
   },
   ayurveda: {
     hero: { title: 'Shree Aadhitya Ayurvedic Hospital', subtitle: 'Consultations and traditional therapies guided by Ayurvedic physicians, planned around your individual needs.', image: '' },

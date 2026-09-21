@@ -62,7 +62,7 @@ export default function LoginPage() {
             <span className="flex w-1/2 items-center justify-center bg-ayur-600"><Leaf className="size-5 translate-x-0.5" /></span>
             <span className="flex w-1/2 items-center justify-center bg-dental-600"><Smile className="size-5 -translate-x-0.5" /></span>
           </span>
-          <div className="leading-tight"><p className="text-lg font-semibold">Shree Aadhitya</p><p className="text-xs tracking-wider text-white/60 uppercase">Admin</p></div>
+          <div className="leading-tight"><p className="text-lg font-semibold">SREE AADHITYAA</p><p className="text-[11px] tracking-wider text-white/60 uppercase">Integrated Siddha and Dental Healthcare · Admin</p></div>
         </div>
 
         <form onSubmit={submit} noValidate className="rounded-xl bg-white p-6 shadow-xl">
