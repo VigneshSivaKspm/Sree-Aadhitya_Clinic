@@ -1,33 +1,74 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { DoctorsSection } from '../components/common/Sections';
-import { WhyChoose } from '../components/home/HomeSections';
-import Button from '../components/ui/Button';
-import { PageHero, Section } from '../components/ui/Section';
-import { BRAND } from '../config/site';
-import Seo from '../components/ui/Seo';
-import { useSite } from '../contexts/SiteContext';
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { DoctorsSection } from "../components/common/Sections";
+import { WhyChoose } from "../components/home/HomeSections";
+import Button from "../components/ui/Button";
+import { PageHero, Section } from "../components/ui/Section";
+import { BRAND } from "../config/site";
+import Seo from "../components/ui/Seo";
+import { useSite } from "../contexts/SiteContext";
 
 export default function AboutPage() {
   const { content } = useSite();
   const about = content.main.about;
   return (
     <>
-      <Seo title="About us" description={`About ${BRAND.fullName}.`} path="/about" />
+      <Seo
+        title="About us"
+        description={`About ${BRAND.fullName}.`}
+        path="/about"
+        image="/og-main.png"
+      />
       <PageHero eyebrow="About" title={about.title} />
       <Section>
         <div className="mx-auto max-w-3xl">
-          <p className="text-lg leading-relaxed whitespace-pre-line text-ink-700">{about.body}</p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            <Link to="/ayurveda" className="group rounded-xl border border-ayur-100 bg-ayur-50 p-6 hover:shadow-md">
-              <h2 className="font-sans text-lg font-semibold text-ayur-800">Ayurvedic Hospital</h2>
-              <p className="mt-1 text-sm text-ink-600">Consultations and traditional therapies.</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-ayur-700">Visit <ArrowRight className="size-4" aria-hidden="true" /></span>
+          <p className="text-lg leading-relaxed whitespace-pre-line text-ink-700">
+            {about.body}
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <Link
+              to="/ayurveda"
+              className="group overflow-hidden rounded-xl border border-ayur-100 bg-white transition hover:shadow-md"
+            >
+              <img
+                src="/ayurveda-about.png"
+                alt="Ayurvedic Hospital"
+                className="aspect-[16/10] w-full object-cover transition duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="p-5">
+                <h2 className="font-sans text-lg font-semibold text-ayur-800">
+                  Ayurvedic Hospital
+                </h2>
+                <p className="mt-1 text-sm text-ink-600">
+                  Consultations and traditional therapies.
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-ayur-700">
+                  Visit <ArrowRight className="size-4" aria-hidden="true" />
+                </span>
+              </div>
             </Link>
-            <Link to="/dental" className="group rounded-xl border border-dental-100 bg-dental-50 p-6 hover:shadow-md">
-              <h2 className="font-sans text-lg font-semibold text-dental-800">Dental Hospital</h2>
-              <p className="mt-1 text-sm text-ink-600">Preventive, restorative and cosmetic dental care.</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-dental-700">Visit <ArrowRight className="size-4" aria-hidden="true" /></span>
+            <Link
+              to="/dental"
+              className="group overflow-hidden rounded-xl border border-dental-100 bg-white transition hover:shadow-md"
+            >
+              <img
+                src="/dental-about.png"
+                alt="Dental Hospital"
+                className="aspect-[16/10] w-full object-cover transition duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="p-5">
+                <h2 className="font-sans text-lg font-semibold text-dental-800">
+                  Dental Hospital
+                </h2>
+                <p className="mt-1 text-sm text-ink-600">
+                  Preventive, restorative and cosmetic dental care.
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-dental-700">
+                  Visit <ArrowRight className="size-4" aria-hidden="true" />
+                </span>
+              </div>
             </Link>
           </div>
         </div>
@@ -36,7 +77,9 @@ export default function AboutPage() {
       <DoctorsSection limit={4} muted showAll />
       <Section>
         <div className="text-center">
-          <Button to="/appointments" size="lg">Book an appointment</Button>
+          <Button to="/appointments" size="lg">
+            Book an appointment
+          </Button>
         </div>
       </Section>
     </>

@@ -1,0 +1,544 @@
+================================================================================
+SREE AADHITYAA INTEGRATED SIDDHA AND DENTAL HEALTHCARE
+COMPLETE IMAGE PROMPT PACK (for ChatGPT image generation)  |  by Legendary One Technologies
+================================================================================
+
+CONTENTS
+  1. How to use this file
+  2. Global style guide, colour palette and safety rules
+  3. MASTER PREFIX (paste before every prompt)
+  4. Image inventory (every image slot, ratio, size, where it is uploaded)
+  5. PROMPTS
+       A. Brand: logos + social/OG share images
+       B. Main home page
+       C. Ayurveda landing page
+       D. Dental landing page
+       E. Ayurvedic treatments (4)
+       F. Dental treatments (7)
+       G. Doctor placeholders (4)
+       H. Store: category images (3)
+       I. Store: product images (6) + reusable product template + gallery add-ons
+       J. Optional extras (facilities, empty states)
+  6. Post-processing, naming and upload checklist
+  7. Suggested alt text
+
+--------------------------------------------------------------------------------
+1. HOW TO USE THIS FILE
+--------------------------------------------------------------------------------
+1. Open ChatGPT (image generation enabled). Start a NEW chat per section so the
+   style stays consistent inside that section.
+2. For each image: paste the MASTER PREFIX (section 3), then the image's own
+   prompt, then the "Size line" from that prompt. Example:
+       [MASTER PREFIX]  +  [PROMPT A1]  +  "Generate at 1536x1024 (landscape)."
+3. ChatGPT only produces a few native sizes:
+       Square     1024 x 1024   (1:1)
+       Landscape  1536 x 1024   (3:2)
+       Portrait   1024 x 1536   (2:3)
+   So each prompt below tells you (a) what to GENERATE at and (b) what to CROP
+   the result to. The website crops with "object-cover", so always keep the
+   important subject near the CENTRE with breathing room at the edges.
+4. If the first result is off, follow up with short edits, e.g.
+       "Same image, but warmer light and less clutter."
+       "Move the subject slightly left; keep the right third empty."
+       "Remove any text or logos that appear."
+5. Generate 2-3 variations for the important images (hero images) and pick the
+   calmest, least cluttered one.
+6. Finished files are uploaded from the ADMIN panel (see the "Upload via" line
+   on every image). No developer help is needed to swap images later.
+
+--------------------------------------------------------------------------------
+2. GLOBAL STYLE GUIDE, PALETTE AND SAFETY RULES
+--------------------------------------------------------------------------------
+BRAND FEEL (both hospitals): trust, cleanliness, calm, premium, modern,
+authentic, accessible. Restrained - never flashy, never "stocky", never noisy.
+
+LOOK
+  - Photorealistic editorial photography (unless a prompt says "illustration").
+  - Soft, natural daylight; gentle shadows; shallow depth of field.
+  - Uncluttered compositions with generous empty space (text sits next to images
+    on the site, and pictures get cropped on phones).
+  - No text, letters, numbers, logos, signage, watermarks or UI in any image.
+  - Landscape images: subject centred or on the left/right third with calm space.
+
+PALETTE (matches the website theme; use these words/hex codes in follow-ups)
+  Main brand ink ........ deep green-ink  #14332E
+  Warm paper/sand ....... #F4F0E7  /  #FAF8F3
+  AYURVEDA greens ....... #3B5729 (deep), #5F883F (mid), #A3C085 (soft), #E3ECD9 (pale)
+  Turmeric accent ....... #C98A1B
+  DENTAL coral ..... #A2343A (deep), #C8434A (main-dark), #F17577 (BRAND CORAL),
+                         #F58F91 (light), #FDE3E3 (pale), #FEF3F3 (tint)
+  Neutrals .............. clean white, soft grey, natural wood, linen
+
+AYURVEDA MOOD: natural, warm, herbal, earthy, serene. Elements: fresh green
+leaves, banana leaf, clay and brass vessels, wooden trays, linen, marigold,
+turmeric, herbs, warm oils, soft morning light, muted greens + warm neutrals.
+
+DENTAL MOOD: clean, bright, modern, gentle. Elements: white surfaces, glass,
+soft coral-red accents, tidy clinical rooms, smiling (natural, not exaggerated)
+patients, bright daylight. Avoid anything frightening.
+
+SAFETY / COMPLIANCE RULES (important - this is a healthcare website)
+  - NO medical claims in images: no "before/after", no dramatic cures, no
+    glowing "healing" effects, no pain/injury imagery, no blood, no close-up
+    needles or drills pointed at a face.
+  - NO invented credentials: no certificates, awards, badges, stethoscope-with-
+    text, "100%" or "best" signage.
+  - NO real brands, logos or readable packaging text. Product packaging must be
+    plain and label-less (real labels get added later).
+  - PEOPLE: AI-generated faces must NEVER be presented as the hospital's real
+    doctors, staff or patients. For doctor photos use REAL photos supplied by
+    the hospital. The doctor prompts in section G are neutral placeholders
+    (illustrated / back-view) meant to be replaced.
+  - Where possible show hands, silhouettes, or people from behind/side, and
+    keep faces soft and non-identifiable.
+  - Culturally respectful, authentic Indian context (South Indian setting is
+    fine). No caricatures, no stereotyped costumes.
+  - Do not present any treatment as guaranteed. Images should feel calm and
+    informational, not promotional.
+
+--------------------------------------------------------------------------------
+3. MASTER PREFIX  (copy-paste before EVERY prompt)
+--------------------------------------------------------------------------------
+Photorealistic editorial photograph for a premium, calm healthcare website in
+India. Soft natural daylight, gentle shadows, clean uncluttered composition,
+generous negative space around the subject, shallow depth of field, natural
+colour, high detail, subtly warm tone. Authentic and trustworthy, not stock-
+photo cliche. Absolutely NO text, letters, numbers, logos, watermarks, brand
+names, captions or signage anywhere in the image. NO blood, NO close-up needles
+or dental drills, NO before/after comparisons, NO glowing or magical effects,
+NO clearly identifiable real people.
+
+(For ILLUSTRATION prompts, use the ILLUSTRATION PREFIX instead:)
+Flat, modern vector-style illustration with soft shapes and subtle grain, calm
+muted palette, clean minimal composition, generous negative space. NO text, NO
+letters, NO logos, NO watermarks.
+
+--------------------------------------------------------------------------------
+4. IMAGE INVENTORY  (every image slot on the website)
+--------------------------------------------------------------------------------
+Upload limits (admin): JPG / PNG / WebP / GIF / AVIF, max 5 MB per file.
+Aim for 150-400 KB per image after compression (WebP or optimised JPG).
+
+ID   | Image                               | Where it appears              | Final ratio | Generate at | Crop / final size
+-----|-------------------------------------|-------------------------------|-------------|-------------|--------------------
+A1   | Main logo (icon, transparent)       | Header/footer (replace mark)  | 1:1         | 1024x1024   | 1024x1024 PNG
+A2   | Ayurveda logo (icon, transparent)   | Practice pages (optional)     | 1:1         | 1024x1024   | 1024x1024 PNG
+A3   | Dental logo (icon, transparent)     | Practice pages (optional)     | 1:1         | 1024x1024   | 1024x1024 PNG
+A4   | Share image - main site             | Social / link previews (OG)   | 1.91:1      | 1536x1024   | crop 1536x806 -> 1200x630
+A5   | Share image - Ayurveda              | Social / link previews (OG)   | 1.91:1      | 1536x1024   | crop 1536x806 -> 1200x630
+A6   | Share image - Dental                | Social / link previews (OG)   | 1.91:1      | 1536x1024   | crop 1536x806 -> 1200x630
+B1   | Home hero                           | Home page, hero (right side)  | 4:3         | 1536x1024   | crop 1365x1024 (min 1200x900)
+C1   | Ayurveda hero                       | /ayurveda hero                | 4:3         | 1536x1024   | crop 1365x1024
+C2   | Ayurveda "About" image              | /ayurveda about section       | 4:3         | 1536x1024   | crop 1365x1024
+D1   | Dental hero                         | /dental hero                  | 4:3         | 1536x1024   | crop 1365x1024
+D2   | Dental "About" image                | /dental about section         | 4:3         | 1536x1024   | crop 1365x1024
+E1-4 | Ayurvedic treatment images (4)      | Treatment cards + detail page | 16:10       | 1536x1024   | crop 1536x960
+F1-7 | Dental treatment images (7)         | Treatment cards + detail page | 16:10       | 1536x1024   | crop 1536x960
+G1-4 | Doctor placeholder images (4)       | Doctor cards                  | 4:3         | 1024x1024   | crop 1024x768
+H1-3 | Store category images (3)           | Admin category (optional)     | 4:3         | 1536x1024   | crop 1365x1024
+I1-6 | Product images (6, + gallery)       | Shop cards + product page     | 1:1         | 1024x1024   | 1024x1024 (or 1200 if upscaled)
+J1-3 | Dental facility images (optional)   | Not shown yet (future use)    | 3:2         | 1536x1024   | as generated
+J4-5 | Empty-state illustrations (optional)| Future use                    | 1:1         | 1024x1024   | as generated
+
+NOTES ON CROPPING
+  - Treatment images are displayed at 16:10 on cards and cropped to 16:9 on the
+    detail page: keep the subject in the centre 70% of the frame.
+  - Doctor cards are 4:3: keep the head/upper body in the centre.
+  - Product images are square: keep the product centred with ~15% margin.
+
+UPLOAD LOCATIONS (Admin panel)
+  Home/Ayurveda/Dental hero + about images -> Website content -> (Main site | Ayurveda page | Dental page)
+  Treatment images -> Services / Treatments -> Add/Edit treatment -> Image
+  Doctor images   -> Doctors -> Add/Edit doctor -> Profile image
+  Product images  -> Products -> Add/Edit product -> Images (up to 8; first = main)
+  Category images -> Categories -> Add/Edit category -> Image
+  Logos / favicon / OG -> developer task (files in web/public); see section 6.
+
+================================================================================
+5. PROMPTS
+================================================================================
+
+--------------------------------------------------------------------------------
+A. BRAND - LOGOS AND SHARE IMAGES
+--------------------------------------------------------------------------------
+NOTE: The brief says final logos are supplied by the client. The brand name is
+SREE AADHITYAA INTEGRATED SIDDHA AND DENTAL HEALTHCARE; icons stay text-free. Use these ONLY as
+concept/placeholder marks until the hospital approves a real logo.
+
+[A1] MAIN LOGO ICON (group mark)  -  Save as: logo-main.png
+Prompt (use ILLUSTRATION PREFIX + this): A minimal modern logo icon for SREE AADHITYAA Integrated Siddha and Dental
+Healthcare, a healthcare group, a rounded-square badge split vertically into two halves: the
+left half deep herbal green (#3B5729) containing a simple white leaf outline,
+the right half coral red (#F17577) containing a simple white smile/tooth
+outline. Clean geometric shapes, even stroke weight, perfectly centred, flat
+design, no gradients, no shadows, no text. Transparent background.
+Size line: Generate at 1024x1024, transparent background PNG.
+
+[A2] AYURVEDA LOGO ICON  -  Save as: logo-ayurveda.png
+Prompt: A minimal logo icon for an Ayurvedic hospital: a rounded-square badge in
+deep herbal green (#3B5729) with a single elegant white leaf/sprout line drawing
+in the centre, subtle turmeric-gold (#C98A1B) small accent dot. Flat, geometric,
+calm, premium. No text, no gradients, no shadows. Transparent background.
+Size line: Generate at 1024x1024, transparent background PNG.
+
+[A3] DENTAL LOGO ICON  -  Save as: logo-dental.png
+Prompt: A minimal logo icon for a dental hospital: a rounded-square badge in
+coral red (#F17577) with a simple white tooth outline (soft, friendly curves)
+and a tiny light-coral (#F58F91) sparkle accent. Flat, geometric, clean, modern.
+No text, no gradients, no shadows. Transparent background.
+Size line: Generate at 1024x1024, transparent background PNG.
+
+[A4] SHARE IMAGE - MAIN SITE  -  Save as: og-main.jpg
+Prompt (MASTER PREFIX + this): A calm, wide composition split into two soft-
+focus halves that blend in the middle: on the left, fresh green herbs, a
+brass bowl and a wooden tray on linen in warm light; on the right, a bright
+minimal white dental-clinic countertop with soft coral-red accents and glass.
+Large clean empty space in the centre third (a headline will be added later).
+Overall palette: deep green, warm sand, coral red, white.
+Size line: Generate at 1536x1024 landscape; crop to 1.91:1 (1536x806), then
+resize to 1200x630. Keep everything important inside the central 80%.
+
+[A5] SHARE IMAGE - AYURVEDA  -  Save as: og-ayurveda.jpg
+Prompt: An inviting wide flat-lay/soft-focus scene of an Ayurvedic wellness
+setting: green banana leaf, a small brass vessel of warm herbal oil, fresh
+neem/tulsi leaves, turmeric root, a folded linen cloth on a light wooden
+surface, soft morning window light from the left. Muted natural greens and warm
+neutrals, large calm empty area on the right side for a headline.
+Size line: Generate at 1536x1024 landscape; crop to 1536x806; resize 1200x630.
+
+[A6] SHARE IMAGE - DENTAL  -  Save as: og-dental.jpg
+Prompt: A bright, modern, welcoming dental-clinic scene, softly out of focus: a
+clean treatment room with white surfaces, a tidy chair, large window daylight,
+subtle coral-red accents. No people. Very calm and reassuring, large empty
+clean area on the left for a headline. Palette: white, soft grey, coral red.
+Size line: Generate at 1536x1024 landscape; crop to 1536x806; resize 1200x630.
+
+--------------------------------------------------------------------------------
+B. MAIN HOME PAGE
+--------------------------------------------------------------------------------
+[B1] HOME HERO  -  Save as: home-hero.jpg
+Upload via: Admin -> Website content -> Main site -> Home hero -> Hero image
+(Optional: if empty, the site shows two coloured panels instead.)
+Prompt (MASTER PREFIX + this): A welcoming wide photograph that bridges two
+kinds of care in one calm scene: in the foreground a light wooden table with a
+small brass bowl of green herbs and a folded linen cloth (left), and a clean
+white ceramic cup and a simple white towel with a soft coral-red accent
+(right); softly blurred bright, modern hospital corridor with large windows in
+the background. Warm daylight, serene, premium, hopeful. Palette: deep green,
+warm sand, coral red, white. No people. Keep the centre clean and uncluttered.
+Size line: Generate at 1536x1024; crop to 4:3 (1365x1024). Subject centred.
+
+--------------------------------------------------------------------------------
+C. AYURVEDA LANDING PAGE
+--------------------------------------------------------------------------------
+[C1] AYURVEDA HERO  -  Save as: ayurveda-hero.jpg
+Upload via: Admin -> Website content -> Ayurveda page -> Hero -> Hero image
+(The hero has a DARK GREEN background on the site; a calm, slightly darker
+image blends best.)
+Prompt (MASTER PREFIX + this): A serene Ayurvedic treatment-room scene in warm
+low natural light: a wooden massage table with folded white linen, a brass
+urli bowl with floating marigold petals, a small copper vessel of warm herbal
+oil, green plants in soft focus by a window. Earthy, tranquil, spa-like but
+authentic and clinical-clean. Palette: deep muted green, warm wood, ivory,
+turmeric accents. No people, nothing cluttered.
+Size line: Generate at 1536x1024; crop to 4:3 (1365x1024).
+
+[C2] AYURVEDA ABOUT  -  Save as: ayurveda-about.jpg
+Upload via: Admin -> Website content -> Ayurveda page -> About the hospital -> Image
+Prompt: A tasteful still life of traditional Ayurvedic herbs and preparation
+tools: a stone mortar and pestle with fresh green leaves, small clay bowls of
+turmeric and dried herbs, a brass spoon, on a light wooden table with a
+banana-leaf mat, morning window light, shallow depth of field. Warm, honest,
+natural. Palette: greens, ivory, wood, turmeric accent. No people.
+Size line: Generate at 1536x1024; crop to 4:3 (1365x1024).
+
+--------------------------------------------------------------------------------
+D. DENTAL LANDING PAGE
+--------------------------------------------------------------------------------
+[D1] DENTAL HERO  -  Save as: dental-hero.jpg
+Upload via: Admin -> Website content -> Dental page -> Hero -> Hero image
+(The hero has a DEEP CORAL-RED background (#7E282D) on the site.)
+Prompt (MASTER PREFIX + this): A bright, modern, spotless dental treatment room
+photographed from a low, wide angle: a comfortable treatment chair, tidy
+instrument tray out of focus, big window with soft daylight, white walls with
+subtle coral-red accents, a small green plant. Calm, reassuring, high-end but
+friendly. No people, no visible sharp instruments. Palette: white, soft
+coral red, light grey.
+Size line: Generate at 1536x1024; crop to 4:3 (1365x1024).
+
+[D2] DENTAL ABOUT  -  Save as: dental-about.jpg
+Upload via: Admin -> Website content -> Dental page -> About the hospital -> Image
+Prompt: A friendly, natural moment in a dental clinic reception/consultation
+area: a dentist in a clean white coat and mask seen from behind/side at a desk
+with a tablet showing an abstract, non-readable screen, chatting with a patient
+who is out of focus; bright daylight, soft coral accents, modern furniture.
+Faces NOT visible or softly blurred, non-identifiable. Warm, human, reassuring.
+Palette: white, coral red, natural wood.
+Size line: Generate at 1536x1024; crop to 4:3 (1365x1024).
+
+--------------------------------------------------------------------------------
+E. AYURVEDIC TREATMENTS  (all: 16:10, generate 1536x1024, crop 1536x960)
+Upload via: Admin -> Services / Treatments -> Edit treatment -> Image
+Keep the subject inside the centre 70%. No people faces.
+--------------------------------------------------------------------------------
+[E1] AYURVEDIC CONSULTATION  -  Save as: svc-ayurveda-consultation.jpg
+Prompt (MASTER PREFIX + this): A calm one-to-one Ayurvedic consultation setting:
+a wooden desk with a notebook, a small brass bowl of herbs, a cup of herbal
+tea and a stethoscope resting on linen; two chairs facing each other softly out
+of focus; warm window light. Trustworthy, unhurried, warm. No visible faces.
+
+[E2] PANCHAKARMA PROGRAMME  -  Save as: svc-ayurveda-panchakarma.jpg
+Prompt: A quiet, well-organised Ayurvedic therapy room prepared for a
+programme: wooden treatment table with white linen, rows of small brass and
+clay vessels with herbal preparations, a folded towel with a marigold flower,
+soft diffused light. Ordered and serene, clinical-clean but warm. No people.
+
+[E3] ABHYANGA (HERBAL OIL MASSAGE)  -  Save as: svc-ayurveda-abhyanga.jpg
+Prompt: Close, tasteful shot of warm herbal oil being poured from a small brass
+vessel into a wooden bowl beside fresh green leaves and marigold petals on
+linen; glossy golden oil highlights, soft morning light, shallow depth of
+field. Optionally a pair of practitioner's hands in the background, softly
+blurred. No face, no bare torso, nothing suggestive. Warm greens and golds.
+
+[E4] SHIRODHARA  -  Save as: svc-ayurveda-shirodhara.jpg
+Prompt: A traditional Shirodhara setup: a copper/brass pot on a stand with a
+thin steady stream of warm oil falling into a small bowl below, wooden table,
+white linen, a few green leaves, calm dim warm light, soft focus background.
+Serene, meditative. No people.
+
+--------------------------------------------------------------------------------
+F. DENTAL TREATMENTS  (all: 16:10, generate 1536x1024, crop 1536x960)
+Upload via: Admin -> Services / Treatments -> Edit treatment -> Image
+Bright, friendly, non-frightening. No visible needles/drills near a face.
+--------------------------------------------------------------------------------
+[F1] GENERAL DENTISTRY & CHECK-UPS  -  Save as: svc-dental-general.jpg
+Prompt (MASTER PREFIX + this): A tidy dental consultation tray with a dental
+mirror and a soft white towel on a clean surface, a modern treatment chair
+softly blurred behind, bright window light, coral-red accent. Reassuring,
+routine, simple. No people.
+
+[F2] TEETH CLEANING  -  Save as: svc-dental-cleaning.jpg
+Prompt: A bright still life about oral hygiene: a wooden-handle toothbrush, a
+small glass of water, dental floss and a white towel on a clean white surface
+with soft warm coral shadows; fresh, minimal, spa-like. No people, no text on
+packaging.
+
+[F3] ROOT CANAL TREATMENT  -  Save as: svc-dental-rootcanal.jpg
+Prompt: A calm, abstract-clinical image: a clean 3D-style model of a tooth cross-
+section (simple, anatomical, soft matte finish, no gore) resting on a white
+surface beside a soft coral-coloured cloth, shallow depth of field, bright and clean. It
+should feel educational and gentle, not scary. No people.
+
+[F4] ORTHODONTICS (BRACES & ALIGNERS)  -  Save as: svc-dental-ortho.jpg
+Prompt: Clear dental aligners in an open small white case next to a model of
+teeth with braces, on a bright white surface with soft warm coral reflections; crisp,
+modern, tidy. No people, no text on the case.
+
+[F5] COSMETIC DENTISTRY  -  Save as: svc-dental-cosmetic.jpg
+Prompt: A natural, gentle close-up of a person's warm, subtle smile, face
+mostly cropped (only lower half, natural teeth, no exaggerated whitening, no
+"perfect celebrity smile"), soft window light, blurred bright background,
+coral and white palette. Understated, authentic, non-identifiable.
+
+[F6] DENTAL IMPLANTS  -  Save as: svc-dental-implants.jpg
+Prompt: A clean educational model of a jaw section with a single implant
+component shown in a simple, minimal, matte white and titanium-grey style on a
+white surface; soft coral background blur, bright, precise, calm. No blood, no
+people, no sharp tools.
+
+[F7] PEDIATRIC DENTISTRY  -  Save as: svc-dental-pediatric.jpg
+Prompt: A friendly, colourful-but-calm children's dental scene: a soft plush
+toy and a small child-size toothbrush and a tiny cup on a bright white table in
+a child-friendly clinic corner, pastel coral and yellow accents, soft daylight.
+No children's faces, no adults' faces. Warm, playful, gentle.
+
+--------------------------------------------------------------------------------
+G. DOCTOR PLACEHOLDERS  (4:3, generate 1024x1024, crop 1024x768)
+Upload via: Admin -> Doctors -> Add/Edit doctor -> Profile image
+--------------------------------------------------------------------------------
+IMPORTANT: These are NEUTRAL PLACEHOLDERS ONLY. Replace with real photographs
+of the actual doctors as soon as they are available. Never present AI faces as
+real doctors.
+
+[G1] AYURVEDA DOCTOR PLACEHOLDER 1  -  Save as: doctor-placeholder-ayurveda-1.png
+(Use ILLUSTRATION PREFIX + this): A friendly flat vector avatar of a doctor
+seen from the shoulders up, generic and faceless-style (simple rounded head
+shape, no detailed facial features), wearing a white coat with a small green
+leaf pin, soft green (#E3ECD9) circular background. Calm, minimal.
+
+[G2] AYURVEDA DOCTOR PLACEHOLDER 2  -  Save as: doctor-placeholder-ayurveda-2.png
+Prompt: Same style as G1 with a different hair silhouette and a warm ivory coat
+with a subtle turmeric-gold collar detail, pale sand (#F4F0E7) circular
+background. Generic, faceless-style, no text.
+
+[G3] DENTAL DOCTOR PLACEHOLDER 1  -  Save as: doctor-placeholder-dental-1.png
+Prompt: A friendly flat vector avatar of a dentist seen from the shoulders up,
+generic and faceless-style, wearing a white coat and a white face mask
+pulled down, pale coral (#FDE3E3) circular background. Calm, minimal, no text.
+
+[G4] DENTAL DOCTOR PLACEHOLDER 2  -  Save as: doctor-placeholder-dental-2.png
+Prompt: Same style as G3 with a different hairstyle silhouette and a coral
+(#C8434A) scrub top under a white coat, soft blush (#FEF3F3) circular background.
+Generic, faceless-style, no text.
+
+--------------------------------------------------------------------------------
+H. STORE - CATEGORY IMAGES  (4:3, generate 1536x1024, crop 1365x1024)
+Upload via: Admin -> Categories -> Add/Edit category -> Image  (optional)
+--------------------------------------------------------------------------------
+[H1] HERBAL OILS  -  Save as: cat-herbal-oils.jpg
+Prompt (MASTER PREFIX + this): Three plain amber-glass dropper bottles and a
+small brass bowl of golden herbal oil on a light wooden surface, green leaves
+and marigold petals, warm morning light. Bottles have NO labels or text. Warm
+greens and golds, calm empty space.
+
+[H2] HERBAL POWDERS  -  Save as: cat-herbal-powders.jpg
+Prompt: Small earthen bowls of finely ground herbal powders (green, ochre,
+turmeric-yellow) with wooden spoons and fresh leaves on a linen cloth and light
+wood, top-down soft daylight. Tidy, natural, label-free.
+
+[H3] HERBAL TEAS  -  Save as: cat-herbal-teas.jpg
+Prompt: A steaming clear glass cup of pale golden herbal tea beside a small
+glass jar of dried herbs and fresh tulsi leaves on a wooden tray, soft window
+light, cosy but clean. No text or labels.
+
+--------------------------------------------------------------------------------
+I. STORE - PRODUCT IMAGES  (1:1, generate 1024x1024)
+Upload via: Admin -> Products -> Add/Edit product -> Images
+--------------------------------------------------------------------------------
+PRODUCT RULES: plain, UNBRANDED, label-less packaging (real branding is added
+later or use real product photos). No claims, no text, no fake ingredients
+list. Clean seamless light background (soft ivory #FAF8F3) with a very soft
+shadow so it looks consistent in the grid. Product centred with ~15% margin.
+
+[I1] SAMPLE HERBAL OIL  -  Save as: prod-herbal-oil-1.jpg
+Prompt (MASTER PREFIX + this): Studio product photograph of a single plain
+amber-glass bottle with a black dropper cap, no label, standing on a soft ivory
+surface with a single fresh green leaf beside it; soft diffused light, gentle
+shadow, seamless ivory background, product centred. Square composition.
+
+[I2] SAMPLE MASSAGE OIL  -  Save as: prod-massage-oil-1.jpg
+Prompt: Studio product photograph of a plain tall frosted-glass pump bottle,
+no label, with a small wooden spoon of golden oil and a marigold petal beside
+it, ivory seamless background, soft light, product centred, square.
+
+[I3] SAMPLE HERBAL POWDER  -  Save as: prod-herbal-powder-1.jpg
+Prompt: Studio product photograph of a plain kraft-paper pouch (no printing)
+with a small wooden bowl of fine green herbal powder and a leaf in front,
+ivory seamless background, soft light, product centred, square.
+
+[I4] SAMPLE HERBAL BLEND  -  Save as: prod-herbal-blend-1.jpg
+Prompt: Studio product photograph of a plain clear glass jar with a cork lid
+filled with a dried herbal blend (green and ochre), no label, a few dried
+leaves scattered in front, ivory seamless background, soft light, square.
+
+[I5] SAMPLE HERBAL TEA  -  Save as: prod-herbal-tea-1.jpg
+Prompt: Studio product photograph of a plain matte-green tin canister, no
+label, with a small white cup of pale golden herbal tea and a few tea leaves
+beside it, ivory seamless background, soft light, product centred, square.
+
+[I6] SAMPLE TEA BLEND  -  Save as: prod-tea-blend-1.jpg
+Prompt: Studio product photograph of a plain paper tea-bag box (no printing)
+opened slightly, a glass teapot-style small cup behind, dried herbs in a tiny
+wooden scoop in front, ivory seamless background, soft light, square.
+
+--- REUSABLE PRODUCT TEMPLATE (for every real product later) ------------------
+Photograph THIS EXACT PRODUCT [attach the real product photo]: keep the
+packaging, colours and label exactly as in the reference. Place it centred on a
+seamless soft ivory (#FAF8F3) background with a gentle soft shadow, soft
+diffused studio lighting, sharp focus, 15% margin around the product, square
+composition. Do not add or change any text, logos or claims.
+(Tip: with real products, upload a clear phone photo and ask ChatGPT to
+"clean up the background and lighting only, do not alter the product".)
+
+--- GALLERY ADD-ONS (optional extra images per product, up to 8 total) --------
+[I-G1] Back/side view: same product from the side on the same ivory background.
+[I-G2] Ingredient flat-lay: top-down, the product surrounded by its (real,
+       confirmed) ingredients on light wood, soft daylight. No text.
+[I-G3] In-use scene: the product on a bathroom/dressing-table shelf with a
+       towel and a plant, warm home light, no people, no claims.
+[I-G4] Scale/hand shot: a hand holding the product against a plain background
+       (no face) to show size.
+
+--------------------------------------------------------------------------------
+J. OPTIONAL EXTRAS (not shown on the site yet - ready for future use)
+--------------------------------------------------------------------------------
+[J1] DENTAL FACILITY - MODERN EQUIPMENT  -  Save as: fac-dental-equipment.jpg
+(3:2, generate 1536x1024) A clean modern dental treatment unit and overhead
+light softly out of focus, white and coral palette, bright, no people.
+
+[J2] DENTAL FACILITY - STERILISATION  -  Save as: fac-dental-sterilisation.jpg
+(3:2) A tidy sterilisation area: sealed sterile pouches, stainless-steel tray,
+clean sink, bright white lighting; hygienic, orderly, no people, no text.
+
+[J3] DENTAL FACILITY - COMFORTABLE ROOMS  -  Save as: fac-dental-rooms.jpg
+(3:2) A quiet, comfortable dental waiting/treatment room with a soft chair,
+plants and window light; calm and welcoming, no people.
+
+[J4] EMPTY STATE ILLUSTRATION - NO RESULTS  -  Save as: empty-no-results.png
+(ILLUSTRATION PREFIX, 1024x1024, transparent) A soft flat illustration of a
+magnifying glass over a small leaf and a tooth, muted greens and coral on a
+transparent background, friendly and minimal, no text.
+
+[J5] EMPTY STATE ILLUSTRATION - EMPTY CART  -  Save as: empty-cart.png
+(ILLUSTRATION PREFIX, 1024x1024, transparent) A soft flat illustration of an
+open woven basket with a couple of green leaves, muted greens and warm sand,
+friendly and minimal, transparent background, no text.
+
+--------------------------------------------------------------------------------
+6. POST-PROCESSING, NAMING AND UPLOAD CHECKLIST
+--------------------------------------------------------------------------------
+[ ] Crop to the final ratio in section 4 (any free tool: Photoshop, Canva,
+    Squoosh, Photopea, or Windows Photos > Edit > Crop).
+[ ] Check there is NO text/logo/watermark artefact left in the image.
+[ ] Check there are no distorted hands, extra fingers or odd faces; regenerate
+    if there are.
+[ ] Compress: export WebP (quality 80) or optimised JPG. Target 150-400 KB;
+    hard limit 5 MB. (Squoosh.app or TinyPNG work well.)
+[ ] Keep original wide dimension >= 1200 px for heroes, >= 800 px for cards.
+[ ] Use the "Save as" filenames above (lowercase, hyphens) so files stay
+    organised.
+[ ] Upload through the ADMIN panel using the "Upload via" path (Firebase
+    Storage stores them; old images are cleaned up automatically).
+[ ] Add the alt text from section 7 where an alt field is available (the site
+    already sets sensible alt text for treatment/doctor images).
+[ ] Doctor photos: replace G1-G4 with REAL photos with the doctor's consent.
+[ ] Real product photos replace I1-I6 before launch (placeholders are labelled
+    "Sample" on the site while real data is empty).
+
+DEVELOPER-ONLY FILES (not uploaded via admin; put in web/public)
+  favicon.svg (already present, replace with final logo mark)
+  og-main.jpg / og-ayurveda.jpg / og-dental.jpg  -> use as Open Graph share
+  images (1200x630) once the production domain is known. Ask the developer to
+  wire them into <Seo image="..."> for the Home, Ayurveda and Dental pages.
+  logo-main.png / logo-ayurveda.png / logo-dental.png  -> replace the
+  placeholder marks in web/src/components/layout/Logo.jsx and the admin logo.
+
+--------------------------------------------------------------------------------
+7. SUGGESTED ALT TEXT  (short, descriptive, no medical claims)
+--------------------------------------------------------------------------------
+B1  "A brass bowl of fresh herbs and a white cup on a wooden table in a bright hospital corridor"
+C1  "A calm Ayurvedic treatment room with a wooden table, linen and a bowl of marigold petals"
+C2  "A stone mortar with fresh herbs beside small bowls of turmeric on a wooden table"
+D1  "A bright, modern dental treatment room with a chair and large window"
+D2  "A dentist speaking with a patient at a clinic desk"
+E1  "Ayurvedic consultation desk with a notebook, herbal tea and stethoscope"
+E2  "Ayurvedic therapy room prepared with brass vessels and white linen"
+E3  "Warm herbal oil being poured into a wooden bowl beside green leaves"
+E4  "A brass pot pouring a thin stream of warm oil in a Shirodhara setup"
+F1  "Dental mirror and white towel on a clean consultation tray"
+F2  "Toothbrush, floss and a glass of water on a clean surface"
+F3  "Educational model of a tooth cross-section on a white surface"
+F4  "Clear dental aligners in a small case beside a teeth model"
+F5  "A natural smile in soft window light"
+F6  "Educational model of a jaw with a dental implant component"
+F7  "A child's toothbrush and soft toy on a bright table"
+H1  "Amber dropper bottles and a bowl of herbal oil with green leaves"
+H2  "Bowls of ground herbal powders with wooden spoons"
+H3  "A glass cup of herbal tea beside dried herbs and tulsi leaves"
+I1-I6  Use the product name, e.g. "Amber glass bottle of herbal oil" (describe
+       what is visible; do not add benefits or claims).
+Decorative images (backgrounds, patterns) should have EMPTY alt text ("").
+
+================================================================================
+END OF FILE
+================================================================================

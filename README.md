@@ -1,6 +1,8 @@
-# Shree Aadhitya Hospitals — Web Platform
+# SREE AADHITYAA INTEGRATED SIDDHA AND DENTAL HEALTHCARE — Web Platform
 
-Built by **Legendary One Technologies** for **Shree Aadhitya Ayurvedic Hospital** and **Shree Aadhitya Dental Hospital**.
+Built by **Legendary One Technologies** for **SREE AADHITYAA INTEGRATED SIDDHA AND DENTAL HEALTHCARE** (Ayurvedic/Siddha and Dental practices).
+
+Brand name and colours are centralised: name in `web/src/config/site.js` (`BRAND`), brand coral `#F17577` in the `--color-dental-*` tokens of each app's `index.css`.
 
 Two separate React + Vite apps share one Firebase project:
 
