@@ -344,9 +344,9 @@ export function HomeHero() {
 
 const PRACTICE_POINTS = {
   ayurveda: [
-    "Consultations with Ayurvedic physicians",
-    "Traditional therapies planned individually",
-    "Ayurvedic products available online",
+    "Led by Dr. M. S. Rajamohan, MD (Siddha) NIS",
+    "Specialized pediatric, spine, joint & gastrointestinal care",
+    "Traditional herbal & cosmetic products online",
   ],
   dental: [
     "Check-ups and preventive care",
@@ -383,7 +383,7 @@ function PracticeCard({ practice }) {
       </ul>
       <div className="mt-8 flex flex-wrap gap-3">
         <Button to={p.path} tone={practice}>
-          Visit {practice === "ayurveda" ? "Ayurveda" : "Dental"}{" "}
+          Visit {practice === "ayurveda" ? "Siddha & Ayurveda" : "Dental"}{" "}
           <ArrowRight className="size-4" aria-hidden="true" />
         </Button>
         <Button

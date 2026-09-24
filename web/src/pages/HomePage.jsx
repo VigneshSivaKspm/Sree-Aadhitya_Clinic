@@ -10,6 +10,11 @@ import {
   StorePreview,
   TestimonialsSection,
 } from "../components/common/Sections";
+import {
+  SiddhaDoctorSpotlight,
+  SiddhaClinicalDomains,
+  SiddhaProductsShowcase,
+} from "../components/practice/SiddhaSpecialistSection";
 import ContactSection from "../components/common/ContactSection";
 import { BRAND } from "../config/site";
 import Seo from "../components/ui/Seo";
@@ -27,7 +32,10 @@ export default function HomePage() {
       />
       <HomeHero />
       <PracticeSelection />
+      <SiddhaDoctorSpotlight />
+      <SiddhaClinicalDomains />
       <ServicesPreview />
+      <SiddhaProductsShowcase />
       <WhyChoose />
       <DoctorsSection limit={4} muted showAll />
       <AppointmentBand title={cta.title} text={cta.text} />
